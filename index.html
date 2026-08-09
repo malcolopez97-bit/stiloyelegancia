@@ -178,6 +178,159 @@ body::before{
   .an{animation:none;opacity:1}
   .wa{transition:none}
 }
+
+/* Leyenda "Página web en construcción" */
+.wip{
+  font-family:'Montserrat',sans-serif;
+  font-weight:400;
+  font-size:clamp(.6rem,2.6vw,.72rem);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:rgba(232,213,176,.55);
+  margin-top:6px;
+}
+
+/* ===== Cartel emergente: Nos mudamos ===== */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(5,5,5,.72);
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+  opacity:0;
+  animation:overlayIn .5s ease forwards;
+}
+.modal-overlay.closing{animation:overlayOut .35s ease forwards}
+@keyframes overlayIn{to{opacity:1}}
+@keyframes overlayOut{to{opacity:0}}
+
+.modal-card{
+  position:relative;
+  width:min(92vw,440px);
+  background:linear-gradient(160deg,#171512,#0f0e0c);
+  border:1px solid rgba(201,168,76,.45);
+  border-radius:18px;
+  padding:40px 30px 32px;
+  text-align:center;
+  box-shadow:0 24px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(201,168,76,.08) inset;
+  transform:translateY(14px) scale(.97);
+  opacity:0;
+  animation:cardIn .55s cubic-bezier(.22,.61,.36,1) .08s forwards;
+}
+.modal-overlay.closing .modal-card{animation:cardOut .3s ease forwards}
+@keyframes cardIn{to{transform:none;opacity:1}}
+@keyframes cardOut{to{transform:translateY(10px) scale(.98);opacity:0}}
+
+.modal-close{
+  position:absolute;
+  top:12px;right:12px;
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(232,213,176,.06);
+  border:1px solid rgba(232,213,176,.18);
+  border-radius:50%;
+  color:var(--champ);
+  font-size:22px;line-height:1;
+  cursor:pointer;
+  transition:background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.modal-close:hover{background:rgba(201,168,76,.16);border-color:var(--gold);transform:rotate(90deg)}
+.modal-close:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.modal-kicker{
+  font-family:'Montserrat',sans-serif;
+  font-weight:500;
+  font-size:.66rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:rgba(232,213,176,.55);
+  margin-bottom:10px;
+}
+.modal-title{
+  font-family:'Cinzel',serif;
+  font-weight:600;
+  font-size:clamp(1.6rem,7vw,2.1rem);
+  letter-spacing:.02em;
+  color:var(--gold);
+  line-height:1.15;
+}
+.modal-diamond{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  width:min(80%,260px);
+  margin:16px auto;
+}
+.modal-diamond::before,.modal-diamond::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:linear-gradient(90deg,transparent,var(--gold));
+}
+.modal-diamond::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.modal-diamond i{
+  width:7px;height:7px;
+  transform:rotate(45deg);
+  background:var(--gold);
+  flex:none;
+}
+.modal-text{
+  font-weight:300;
+  font-size:.95rem;
+  line-height:1.7;
+  color:var(--champ);
+  max-width:34ch;
+  margin:0 auto;
+}
+.modal-highlight{
+  display:block;
+  margin-top:14px;
+  font-family:'Cinzel',serif;
+  font-weight:500;
+  font-size:1.12rem;
+  letter-spacing:.02em;
+  color:var(--champ);
+}
+.modal-highlight .date{
+  color:var(--gold);
+  display:block;
+  font-size:.82rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+  font-weight:500;
+  margin-bottom:6px;
+}
+.modal-btn{
+  display:inline-block;
+  margin-top:26px;
+  padding:12px 34px;
+  border-radius:50px;
+  background:linear-gradient(135deg,var(--champ),var(--gold) 55%,var(--gold-deep));
+  color:#1a1206;
+  font-family:'Montserrat',sans-serif;
+  font-weight:600;
+  font-size:.92rem;
+  letter-spacing:.04em;
+  border:none;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.modal-btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(201,168,76,.35);filter:brightness(1.05)}
+.modal-btn:focus-visible{outline:2px solid var(--champ);outline-offset:3px}
+.modal-hidden{display:none !important}
+
+@media (prefers-reduced-motion:reduce){
+  .modal-overlay,.modal-card{animation:none;opacity:1}
+  .modal-card{transform:none}
+  .modal-close{transition:none}
+}
 </style>
 </head>
 <body>
@@ -189,6 +342,7 @@ body::before{
   <div class="rule an d2"><i></i></div>
 
   <p class="soon an d2">Muy pronto</p>
+  <p class="wip an d2">Página web en construcción</p>
   <p class="tagline an d3">Tu próxima ocasión especial empieza acá.</p>
 
   <p class="services an d4">
@@ -197,7 +351,7 @@ body::before{
   </p>
 
   <a class="wa an d5"
-     href="https://wa.me/5492266630864?text=%C2%A1Hola!%20Quer%C3%ADa%20hacer%20una%20consulta."
+     href="https://wa.me/5492266484942?text=%C2%A1Hola!%20Quer%C3%ADa%20hacer%20una%20consulta."
      target="_blank" rel="noopener"
      aria-label="Escribinos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -211,5 +365,44 @@ body::before{
     Av. Kelly N° 804 · Balcarce, Buenos Aires
   </p>
 </main>
+<!-- Cartel emergente: Nos mudamos -->
+<div class="modal-overlay" id="movingModal" role="dialog" aria-modal="true" aria-labelledby="movingTitle" aria-describedby="movingText">
+  <div class="modal-card">
+    <button class="modal-close" id="movingClose" type="button" aria-label="Cerrar aviso">&times;</button>
+    <p class="modal-kicker">Aviso importante</p>
+    <h2 class="modal-title" id="movingTitle">¡Nos mudamos!</h2>
+    <div class="modal-diamond"><i></i></div>
+    <p class="modal-text" id="movingText">
+      Seguimos cerca tuyo, en una nueva dirección.
+      <span class="modal-highlight">
+        <span class="date">A partir del 1 de octubre de 2026</span>
+        Calle 17 N° 684 · Balcarce
+      </span>
+    </p>
+    <button class="modal-btn" id="movingOk" type="button">Entendido</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var modal = document.getElementById('movingModal');
+  if(!modal) return;
+  var closeBtn = document.getElementById('movingClose');
+  var okBtn = document.getElementById('movingOk');
+  document.body.style.overflow = 'hidden';
+  if(closeBtn){ try{ closeBtn.focus(); }catch(e){} }
+  function closeModal(){
+    modal.classList.add('closing');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+    setTimeout(function(){ modal.classList.add('modal-hidden'); }, 340);
+  }
+  function onKey(e){ if(e.key === 'Escape' || e.key === 'Esc'){ closeModal(); } }
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  if(okBtn) okBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal){ closeModal(); } });
+  document.addEventListener('keydown', onKey);
+})();
+</script>
 </body>
 </html>
