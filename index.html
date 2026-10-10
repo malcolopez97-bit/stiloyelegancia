@@ -30,7 +30,6 @@
   "description": "Alquiler y venta de indumentaria formal para casamientos, quinceañeras, egresos y galas.",
   "url": "https://stiloyelegancia.com.ar/",
   "image": "https://stiloyelegancia.com.ar/compartir.jpg",
-  "telephone": "+54 9 2266 48-4942",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Calle 17 N° 684, entre 18 y 20",
@@ -39,7 +38,7 @@
     "postalCode": "B7620",
     "addressCountry": "AR"
   },
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=Calle+17+684,+Balcarce,+Buenos+Aires",
+  "hasMap": "https://maps.google.com/?cid=7556414930798729112",
   "sameAs": ["https://www.instagram.com/stiloyelegancia/"]
 }
 </script>
@@ -146,32 +145,42 @@ a{color:inherit}
   flex:none;
 }
 
-.soon{
-  font-family:var(--serif);
-  font-weight:700;
-  font-size:clamp(1.75rem,8vw,2.6rem);
-  letter-spacing:.16em;
-  text-indent:.16em; /* compensa el espaciado final para que quede centrado */
-  text-transform:uppercase;
-  color:var(--gold);
-  line-height:1.1;
-}
 
 /* Sello "Página web en construcción" */
 .wip{
+  position:relative;
+  overflow:hidden;
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  margin-top:14px;
-  padding:8px 18px 8px 15px;
-  border:1px solid rgba(201,168,76,.42);
+  gap:12px;
+  margin-top:4px;
+  padding:12px 24px 12px 20px;
+  border:1px solid rgba(201,168,76,.55);
   border-radius:999px;
-  background:rgba(201,168,76,.06);
+  background:rgba(201,168,76,.08);
   font-weight:500;
-  font-size:clamp(.62rem,2.7vw,.72rem);
-  letter-spacing:.22em;
+  font-size:clamp(.74rem,3.3vw,.86rem);
+  letter-spacing:.2em;
   text-transform:uppercase;
-  color:rgba(232,213,176,.88);
+  white-space:nowrap;
+  color:var(--champ);
+}
+@media (max-width:440px){
+  .wip{gap:10px;padding:11px 18px 11px 16px;font-size:clamp(.66rem,3.3vw,.78rem);letter-spacing:.13em}
+}
+/* Brillo que cruza el sello cada tanto: "se está construyendo" */
+.wip::after{
+  content:"";
+  position:absolute;
+  top:0;bottom:0;left:-40%;
+  width:40%;
+  background:linear-gradient(100deg,rgba(232,213,176,0),rgba(232,213,176,.16),rgba(232,213,176,0));
+  animation:shine 4.5s ease-in-out 1.6s infinite;
+  pointer-events:none;
+}
+@keyframes shine{
+  0%{left:-40%}
+  45%,100%{left:110%}
 }
 .wip-dot{
   position:relative;
@@ -199,7 +208,7 @@ a{color:inherit}
   font-weight:400;
   font-size:clamp(1.12rem,4.8vw,1.35rem);
   color:var(--champ);
-  margin-top:16px;
+  margin-top:20px;
   line-height:1.35;
 }
 .services{
@@ -321,6 +330,7 @@ a{color:inherit}
   .an{animation:none;opacity:1}
   .wa,.link{transition:none}
   .wip-dot::after{animation:none;opacity:0}
+  .wip::after{animation:none;display:none}
 }
 
 /* ===== Cartel emergente: Nos mudamos ===== */
@@ -385,10 +395,10 @@ a{color:inherit}
   margin-bottom:10px;
 }
 .modal-title{
-  font-family:var(--serif);
-  font-weight:700;
-  font-size:clamp(1.7rem,7.5vw,2.2rem);
-  letter-spacing:.02em;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:clamp(1.5rem,6.6vw,1.9rem);
+  letter-spacing:.01em;
   color:var(--gold);
   line-height:1.15;
 }
@@ -494,7 +504,6 @@ a{color:inherit}
 
   <div class="rule an d2"><i></i></div>
 
-  <p class="soon an d2">Muy pronto</p>
   <p class="wip an d2"><span class="wip-dot" aria-hidden="true"></span>Página web en construcción</p>
   <p class="tagline an d3">Tu próxima ocasión especial empieza acá.</p>
 
@@ -519,7 +528,7 @@ a{color:inherit}
       <span>Balcarce, Buenos Aires</span>
     </p>
     <div class="links">
-      <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+17+684,+Balcarce,+Buenos+Aires" target="_blank" rel="noopener">
+      <a class="link" href="https://maps.google.com/?cid=7556414930798729112" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C7.6 0 4 3.6 4 8c0 5.4 8 16 8 16s8-10.6 8-16c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
         Cómo llegar
       </a>
@@ -541,14 +550,14 @@ a{color:inherit}
     <h2 class="modal-title" id="movingTitle">¡Nos mudamos!</h2>
     <div class="modal-diamond"><i></i></div>
     <p class="modal-text" id="movingText">
-      Ya te esperamos en nuestro nuevo local, a pasos del centro.
+      Ya te esperamos en nuestro nuevo local.
       <span class="modal-highlight">
         Calle 17 N° 684
         <span>entre 18 y 20 · Balcarce</span>
       </span>
     </p>
     <div class="modal-actions">
-      <a class="modal-btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+17+684,+Balcarce,+Buenos+Aires" target="_blank" rel="noopener">
+      <a class="modal-btn primary" href="https://maps.google.com/?cid=7556414930798729112" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C7.6 0 4 3.6 4 8c0 5.4 8 16 8 16s8-10.6 8-16c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
         Cómo llegar
       </a>
